@@ -1,0 +1,19 @@
+.container{
+    position: flex;
+    padding: 1rem;
+    font-family: 'Roboto Slab', serif;
+}
+#header {
+    background-color: #404040;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
+.form {
+    font-size: 25px;
+}
+.cityInput{
+    padding: 5px;
+    min-width: 250px;
+}
