@@ -12,19 +12,18 @@
 // WHEN I open the weather dashboard
 // THEN I am presented with the last searched city forecast
 
-const city = $('#cityInput').val()
-const queryURL = 
-
-$.ajax({
-    url: queryURL,
-    method: 'GET'
-}).then(function(response){
-    console.log(response)
-})
-
-
 $('#button').on('click', function(event){
     event.preventDefault();
 
+    const city = $('.cityInput').val()
+    console.log(city)
+    const queryURL = 'api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=d175ce97bfe64d9a627bbac014ecb740'
     
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+    }).then(function(response){
+        console.log(response)
+    })
+
 })
