@@ -13,11 +13,11 @@ https://mloibner.github.io/Weather-Dashboard/
 
 ## Snippet
 
-
+<img src="Assets.ScreenShot2020-07-05at6.22.55pm.png">
 
 ## UV Index Usage and Recommendations for protection
 
-
+<img src="Assets
 
 ### Acceptance Criteria
 
