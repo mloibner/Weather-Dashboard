@@ -10,22 +10,19 @@
     text-align: center;
     padding: 10px;
     color: white;
+    margin-bottom: 50px;
+    font-size: x-large;
 }
-.form {
-    font-size: 20px;
-    float: left;
-}
-.cityInput{
-    padding: 5px;
-    min-width: 250px;
-    border-radius: 0.25rem;
-}
-.button {
+.btn {
     padding: 5px;
     min-width: 50px;
     background-color: rgb(54, 54, 216);
     border-radius: 0.25rem;
 }
-.button:hover{
+.btn:hover{
     opacity: 60%;
+}
+
+.cityDiv {
+    background-color: grey;
 }
