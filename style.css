@@ -2,7 +2,7 @@
     position: flex;
     padding: 1rem;
     font-family: 'Roboto Slab', serif;
-    background-color: snow;
+    background-color:  rgb(231, 231, 231);
 }
 #header {
     background-color: #404040;
@@ -10,8 +10,11 @@
     text-align: center;
     padding: 10px;
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     font-size: x-large;
+}
+.form-group{
+    padding: 8px;
 }
 .btn {
     padding: 5px;
@@ -25,4 +28,28 @@
 
 .cityDiv {
     background-color: grey;
+}
+.searchDisplay {
+display: flex;
+}
+
+.low {
+    background-color: green;
+    /*Range 0-2*/
+}
+.moderate {
+    background-color: yellow;
+    /*Range 3-5*/
+}
+.high {
+    background-color: orange;
+    /*Range 6-7*/
+}
+.veryHigh {
+    background-color: red;
+    /*Range 8-10*/
+}
+.extreme {
+    background-color: purple;
+    /*Range 11+ */
 }

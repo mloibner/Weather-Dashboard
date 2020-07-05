@@ -1,32 +1,50 @@
-// GIVEN a weather dashboard with form inputs
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-// WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city
-// WHEN I open the weather dashboard
-// THEN I am presented with the last searched city forecast
+const city = $('#cityInput').val()
+const queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=d175ce97bfe64d9a627bbac014ecb740&units=metric'
+const queryUVURL = "https://api.openweathermap.org/data/2.5/onecall?"
+let citySearch = ''
 
+//Check for anything inside localStorage for city history
+let cityList = [];
+cityList = JSON.parse(localStorage.getItem("cityList"));
+
+if (!cityList) {
+    cityList = [];
+}
+//Calling prevCity function to render HTML for searched list.
+prevCity()
     
-
-$('.btn').on('click', function(event){
+$('#cityInput').on('submit', function(event){
     event.preventDefault();
+    let enteredCity = city.val();
+    citySearch = enteredCity;
 
-    const city = $('#cityInput').val()
-    console.log(city)
-    const queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=d175ce97bfe64d9a627bbac014ecb740'
-    
+    const searchDiv = $("<div class='searchedCities'>")
+    const list = $("<li>");
+
+    list.text(cityList);
+    searchDiv.append(list);
+
+    $(".cityList").append(searchDiv);
+    renderCity();
+
+})
+
+const renderCity = function (){
     $.ajax({    
         url: queryURL,
         method: 'GET'
     }).then(function(response){
         result = response
         console.log(result)
+
+
+        $(".todayName").empty();
+        $(".todayIcon").empty();
+        $(".todayTemp").empty();
+        $(".todayHumidity").empty();
+
+
+
 
         const title = (result.city.name) 
         console.log(title)
@@ -44,8 +62,26 @@ $('.btn').on('click', function(event){
         const temperature = result.list[0].main.temp
         console.log(temperature)
     })
+}
 
-    
+const prevCity = function(){
+    if (!cityList) {
 
+    } else {
+        $(".cityList").empty();
+        for (let i = 0; i < cityList.length; i++) {
+            console.log(cityList);
 
-})
+            const searchDiv = $("<div class='searchedCities'>")
+            const list = $("<li>");
+
+            list.text(cityList[i]);
+
+            searchDiv.append(list);
+
+            $(".cityList").append(searchDiv);
+
+        }
+
+    }
+}
