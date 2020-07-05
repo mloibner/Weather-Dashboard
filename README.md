@@ -13,7 +13,7 @@ https://mloibner.github.io/Weather-Dashboard/
 
 ## Snippet
 
-<img src="Assets.ScreenShot2020-07-05at6.22.55pm.png">
+<img src="Assets/Screen%20Shot%202020-07-05%20at%206.22.55%20pm.png">
 
 ## UV Index Usage and Recommendations for protection
 
