@@ -19,7 +19,7 @@
 .btn {
     padding: 5px;
     min-width: 50px;
-    background-color: rgb(54, 54, 216);
+    background-color: cornflowerblue;
     border-radius: 0.25rem;
 }
 .btn:hover{
@@ -52,4 +52,24 @@ display: flex;
 .extreme {
     background-color: purple;
     /*Range 11+ */
+}
+
+#weatherToday{
+    position: relative;
+    background-color:  white;
+    outline: black;
+    outline-width: 0.5px;
+}
+.listEl{
+    background-color: white;
+    border-radius: 0.25rem;
+    outline: black;
+    padding: 5px;
+}
+.listEl:hover{
+    background-color: cornflowerblue;
+}
+.weekForecast {
+    background-color: cornflowerblue;
+    margin: 5px;
 }

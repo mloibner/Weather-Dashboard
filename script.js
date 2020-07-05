@@ -21,7 +21,7 @@ $('#cityIn').on('submit', function(event){
     citySearch = enteredCity;
     console.log(citySearch)
     const searchDiv = $("<div class='searchedCities'>")
-    const p = $("<p>");
+    const p = $("<p class = 'listEl'>");
     p.text(enteredCity);
     searchDiv.append(p);
     $(".cityList").append(searchDiv);
@@ -43,7 +43,7 @@ function prevCity(){
         for (let i = 0; i < cityList.length; i++) {
             console.log(cityList);
             const searchDiv = $("<div class='searchedCities'>")
-            const p = $("<p>");
+            const p = $("<p class = 'listEl'>");
             p.text(cityList[i]);
             searchDiv.append(p);
             $(".cityList").append(searchDiv);
@@ -100,7 +100,7 @@ function renderCity(){
             console.log(wind);
             UV = response.current.uvi;
             console.log(UV);
-            const title = cityName + date;
+            const title = cityName + " " + date;
             console.log(title);
             temperature = response.current.temp;
             console.log(temperature);
