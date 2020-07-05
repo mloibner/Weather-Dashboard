@@ -17,7 +17,7 @@ https://mloibner.github.io/Weather-Dashboard/
 
 ## UV Index Usage and Recommendations for protection
 
-<img src="Assets
+<img src="Assets/Screen%20Shot%202020-07-05%20at%208.57.25%20pm.png">
 
 ### Acceptance Criteria
 
