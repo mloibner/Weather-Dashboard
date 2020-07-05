@@ -1,8 +1,8 @@
-const city = $('#cityInput').val();
+const city = $('#cityInput');
 const queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
 const apiKey = '&appid=d175ce97bfe64d9a627bbac014ecb740&units=metric';
 const queryUVURL = "https://api.openweathermap.org/data/2.5/onecall?";
-let citySearch = '';
+let citySearch = "";
 
 //Check for anything inside localStorage for city history
 let cityList = [];
@@ -15,14 +15,15 @@ if (!cityList) {
 prevCity();
 
 //Submit event listener. Appending search to list in previous search div then rendering city Forecast info.    
-$('#cityInput').on('submit', function(event){
+$('#cityIn').on('submit', function(event){
     event.preventDefault();
     let enteredCity = city.val();
     citySearch = enteredCity;
+    console.log(citySearch)
     const searchDiv = $("<div class='searchedCities'>")
-    const list = $("<li>");
-    list.text(cityList);
-    searchDiv.append(list);
+    const p = $("<p>");
+    p.text(enteredCity);
+    searchDiv.append(p);
     $(".cityList").append(searchDiv);
     renderCity();
 });
@@ -32,7 +33,7 @@ $(".searchedCities").on('click', function(){
     citySearch = prevSearch;
     renderCity();
     $('.weekForecast').empty();
-})
+});
 
 //loop over previous city array and append to div. 
 function prevCity(){
@@ -42,18 +43,16 @@ function prevCity(){
         for (let i = 0; i < cityList.length; i++) {
             console.log(cityList);
             const searchDiv = $("<div class='searchedCities'>")
-            const list = $("<li>");
-            list.text(cityList[i]);
-            searchDiv.append(list);
+            const p = $("<p>");
+            p.text(cityList[i]);
+            searchDiv.append(p);
             $(".cityList").append(searchDiv);
         }
     }
 }
 
 //Function to render Forecast information
-function renderCity(event){
-    event.preventDefault();
-
+function renderCity(){
     const location = citySearch;
     const apiURL = queryURL + location + apiKey
 
@@ -92,19 +91,26 @@ function renderCity(event){
 
             //Gather information from API JSON to store in variables
             date = moment(response.current.dt * 1000).format('L');
+            console.log(date);
             weatherIcon = response.current.weather[0].icon;
+            console.log(weatherIcon);
             humidity = response.current.humidity;
+            console.log(humidity);
             wind = response.current.wind_speed;
+            console.log(wind);
             UV = response.current.uvi;
+            console.log(UV);
             const title = cityName + date;
+            console.log(title);
             temperature = response.current.temp;
+            console.log(temperature);
 
             let weatherIconURL = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
 
             //Appending info to class sections in HTML to render on page
             $(".todayName").text(title);
             $(".todayIcon").attr("src", weatherIconURL);
-            $(".todayTemp").append("temperature: " + temperature + "&#8451;");
+            $(".todayTemp").append("Temperature: " + temperature + "&#8451;");
             $(".todayHumidity").text("Humidity: " + humidity + "%");
             $(".todayWind").text("Wind Speed: " + wind + "km/h");
             $(".todayUV").append("UV index: <span id='indexUV'>" + UV + "<span>")
@@ -125,6 +131,50 @@ function renderCity(event){
             if (UV >= 10) {
                 $("#indexUV").addClass("extreme");
             }
-        })
-    })
+            if (!$("#weatherToday").hasClass("weatherToday")) {
+                $("#weatherToday").addClass("weatherToday");
+            }
+            if (!$("#current-info").hasClass("current-info")) {
+                $("#current-info").addClass("current-info");
+            }
+// Creating variables for weekly forecast
+            let weekForecast = response.daily;
+            let count = 6;
+            let dailyForecast = weekForecast.slice(1, count);
+
+            $(".weekForecast").empty();
+
+//Gathering data for each day of the week
+            Object.keys(dailyForecast).forEach(function(key) {
+
+                let weekDate = dailyForecast[key].dt;
+                weekDate = moment(weekDate * 1000).format('L');
+                let weekTemp = dailyForecast[key].temp.day;
+                let weekHumidity = dailyForecast[key].humidity;
+                let icon = dailyForecast[key].weather[0].icon;
+                let iconURL = "http://openweathermap.org/img/wn/" + icon + ".png";
+
+                //creating elements for the weekly forecast cards
+                const weekCard = $("<div class='col day-forcast'>");
+                const titleDate = $("<h5>");
+                const weekIcon = $("<img>");
+                const titleTemp = $("<p>");
+                const titleHumidity = $("<p>");
+
+                //Appending info to cards
+                titleDate.text(weekDate);
+                weekIcon.attr("src", iconURL);
+                titleTemp.append("Temperature: " + weekTemp + "&#8451;");
+                titleHumidity.text("Humidity: " + weekHumidity + "%");
+
+                weekCard.append(titleDate, weekIcon, titleTemp, titleHumidity);
+                $(".weekForecast").append(weekCard);
+            });
+        });
+
+        //Setting local storage into array for city search
+        cityList.indexOf(cityName) === -1 ? cityList.push(cityName) : console.log("item already on array");
+        localStorage.setItem("cityList", JSON.stringify(cityList));
+    });
+
 }
