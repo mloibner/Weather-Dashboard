@@ -155,7 +155,7 @@ function renderCity(){
                 let iconURL = "http://openweathermap.org/img/wn/" + icon + ".png";
 
                 //creating elements for the weekly forecast cards
-                const weekCard = $("<div class='col day-forcast'>");
+                const weekCard = $("<div class='col dailyWeather'>");
                 const titleDate = $("<h5>");
                 const weekIcon = $("<img>");
                 const titleTemp = $("<p>");

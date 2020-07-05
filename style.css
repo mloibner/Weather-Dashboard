@@ -13,8 +13,9 @@
     margin-bottom: 25px;
     font-size: x-large;
 }
-.form-group{
+.form{
     padding: 8px;
+    border-radius: 0.25rem;
 }
 .btn {
     padding: 5px;
@@ -28,6 +29,7 @@
 
 .cityDiv {
     background-color: grey;
+    border-radius: 0.25rem;
 }
 .searchDisplay {
 display: flex;
@@ -57,8 +59,7 @@ display: flex;
 #weatherToday{
     position: relative;
     background-color:  white;
-    outline: black;
-    outline-width: 0.5px;
+    border-radius: 0.25rem;
 }
 .listEl{
     background-color: white;
@@ -69,7 +70,11 @@ display: flex;
 .listEl:hover{
     background-color: cornflowerblue;
 }
-.weekForecast {
-    background-color: cornflowerblue;
-    margin: 5px;
+
+.dailyWeather {
+background-color: cornflowerblue;
+padding: 5px;
+margin: 10px;
+border: black, 1px;
+border-radius: 0.25rem;
 }
